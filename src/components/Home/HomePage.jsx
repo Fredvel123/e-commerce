@@ -20,22 +20,29 @@ function HomePage() {
     // eslint-disable-next-line
   }, [])
   // Products Added
-  const [ProductsAdded, setProductsAdded] = useState([]);
+  // const [ProductsAdded, setProductsAdded] = useState([]);
+
+  const [products, setProducts] = useState([]);
+  const addProducts = element => {
+    setProducts([...products, {element}]);
+  }
   const [allPrices, setallPrices] = useState([]);
+  const getAllPrices = (prices) => {
+    setallPrices([...allPrices, prices])
+  }
+  
   return (
     <Fragment>
       <Categories />
+      
+      {/* <button onClick={sumPriceTotal} >get Price total</button> */}
       <div>
         {dataApi.map(item => <div key={item.id}>
           <img src={item.image} alt="" width="75px" />
-          <button onClick={() => {
-            setProductsAdded([...ProductsAdded, {item}] )
-            setallPrices([...allPrices, item.price] )
-            console.log(allPrices);
-          } } >Add the cart</button>
+          <button onClick={() => addProducts(item) & getAllPrices(item.price)}  >Add the cart</button>
         </div>)}
       </div>
-      <ShoppingPage products={ProductsAdded} setProducts={setProductsAdded} />
+      <ShoppingPage products={products} setProducts={setProducts} callb={addProducts} allPrices={allPrices} />
     </Fragment>
   )
 }
