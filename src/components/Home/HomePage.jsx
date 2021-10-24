@@ -29,8 +29,13 @@ function HomePage() {
   const [allPrices, setallPrices] = useState([]);
   const getAllPrices = (prices) => {
     setallPrices([...allPrices, prices])
+    
   }
-  
+  // delete price items
+  const removePrices = (name) => {
+    const elem = allPrices.filter(x => x !== name);
+    setallPrices(elem) 
+  }
   return (
     <Fragment>
       <Categories />
@@ -39,10 +44,15 @@ function HomePage() {
       <div>
         {dataApi.map(item => <div key={item.id}>
           <img src={item.image} alt="" width="75px" />
-          <button onClick={() => addProducts(item) & getAllPrices(item.price)}  >Add the cart</button>
+          <button onClick={() => addProducts(item) & getAllPrices(item.price) }  >Add the cart</button>
         </div>)}
       </div>
-      <ShoppingPage products={products} setProducts={setProducts} callb={addProducts} allPrices={allPrices} />
+      <ShoppingPage 
+        products={products} 
+        setProducts={setProducts} 
+        callb={addProducts} 
+        allPrices={allPrices}
+        callback={removePrices}  />
     </Fragment>
   )
 }

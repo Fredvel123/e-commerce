@@ -2,7 +2,7 @@ import React, { Fragment, useEffect, useState } from 'react'
 // icons.
 import xIcon from '../../icons/x.png'
 
-function ShoppingPage({products, setProducts, callb, allPrices}) {
+function ShoppingPage({products, setProducts, callb, allPrices, callback}) {
   const handleDeleteItem  = Uid => {
     const elements = products.filter(x => x.element.id !== Uid );
     setProducts(elements)
@@ -26,7 +26,7 @@ return (
       {
         products.map(item => <div key={item.element.id}>
           <img src={item.element.image} alt="" width="55px"/>
-          <img src={xIcon} alt="" width="33px" onClick={ () => handleDeleteItem(item.element.id)} />
+          <img src={xIcon} alt="" width="33px" onClick={ () => handleDeleteItem(item.element.id) & callback(item.element.price)} />
         </div> ) 
       }
     </Fragment>
