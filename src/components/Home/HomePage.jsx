@@ -1,7 +1,10 @@
-import React, { Fragment, useEffect } from 'react'
+import React, { Fragment, useEffect, useState } from 'react'
+// mini components
+import Categories from './Categories';
 // redux
 import {useDispatch, useSelector} from 'react-redux';
 import {setDataApi} from '../../redux-toolkit/slices/DataApi'
+import ShoppingPage from './ShoppingPage';
 
 function HomePage() {
   const dataApi = useSelector(state => state.dataApi.value);
@@ -16,13 +19,23 @@ function HomePage() {
     getProductos('https://fakestoreapi.com/products');
     // eslint-disable-next-line
   }, [])
-
+  // Products Added
+  const [ProductsAdded, setProductsAdded] = useState([]);
+  const [allPrices, setallPrices] = useState([]);
   return (
     <Fragment>
-      <h1>This will be the home page</h1>
+      <Categories />
       <div>
-        {dataApi.map(item => <img src={item.image} alt="" width="75px" /> )}
+        {dataApi.map(item => <div key={item.id}>
+          <img src={item.image} alt="" width="75px" />
+          <button onClick={() => {
+            setProductsAdded([...ProductsAdded, {item}] )
+            setallPrices([...allPrices, item.price] )
+            console.log(allPrices);
+          } } >Add the cart</button>
+        </div>)}
       </div>
+      <ShoppingPage products={ProductsAdded} setProducts={setProductsAdded} />
     </Fragment>
   )
 }
