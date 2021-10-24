@@ -6,7 +6,6 @@ function ShoppingPage({products, setProducts, callb, allPrices, callback}) {
   const handleDeleteItem  = Uid => {
     const elements = products.filter(x => x.element.id !== Uid );
     setProducts(elements)
-    console.log(products);
   }
   // code to add objects.
   const [priceTotal, setPriceTotal] = useState(0)

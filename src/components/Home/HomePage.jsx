@@ -1,6 +1,7 @@
 import React, { Fragment, useEffect, useState } from 'react'
 // mini components
 import Categories from './Categories';
+import ItemAbout from './ItemAbout';
 // redux
 import {useDispatch, useSelector} from 'react-redux';
 import {setDataApi} from '../../redux-toolkit/slices/DataApi'
@@ -29,12 +30,16 @@ function HomePage() {
   const [allPrices, setallPrices] = useState([]);
   const getAllPrices = (prices) => {
     setallPrices([...allPrices, prices])
-    
   }
   // delete price items
   const removePrices = (name) => {
     const elem = allPrices.filter(x => x !== name);
     setallPrices(elem) 
+  }
+  // page item
+  const [page, setPage] = useState(0);
+  const changePage = data => {
+    setPage(data)
   }
   return (
     <Fragment>
@@ -45,6 +50,7 @@ function HomePage() {
         {dataApi.map(item => <div key={item.id}>
           <img src={item.image} alt="" width="75px" />
           <button onClick={() => addProducts(item) & getAllPrices(item.price) }  >Add the cart</button>
+          <button onClick={() => changePage(item.id) } >See More</button>
         </div>)}
       </div>
       <ShoppingPage 
@@ -53,6 +59,7 @@ function HomePage() {
         callb={addProducts} 
         allPrices={allPrices}
         callback={removePrices}  />
+      <ItemAbout page={page} callback={changePage}  />
     </Fragment>
   )
 }
