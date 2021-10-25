@@ -6,6 +6,7 @@ import ItemAbout from './ItemAbout';
 import {useDispatch, useSelector} from 'react-redux';
 import {setDataApi} from '../../redux-toolkit/slices/DataApi'
 import ShoppingPage from './ShoppingPage';
+import { Card, Cards, CardStyle } from '../../styled-components/HomeStyled';
 
 function HomePage() {
   const dataApi = useSelector(state => state.dataApi.value);
@@ -38,28 +39,29 @@ function HomePage() {
   }
   // page item
   const [page, setPage] = useState(0);
+  const [itemOpen, setItemOpen] = useState(false);
   const changePage = data => {
     setPage(data)
   }
   return (
     <Fragment>
+
+      <Cards>
       <Categories />
-      
-      {/* <button onClick={sumPriceTotal} >get Price total</button> */}
-      <div>
-        {dataApi.map(item => <div key={item.id}>
+        {dataApi.map(item => 
+        <CardStyle key={item.id}>
           <img src={item.image} alt="" width="75px" />
-          <button onClick={() => addProducts(item) & getAllPrices(item.price) }  >Add the cart</button>
-          <button onClick={() => changePage(item.id) } >See More</button>
-        </div>)}
-      </div>
-      <ShoppingPage 
-        products={products} 
-        setProducts={setProducts} 
-        callb={addProducts} 
+          <button onClick={() => addProducts(item) & getAllPrices(item.price)}  >Add the cart</button>
+          <button onClick={() => changePage(item.id) & setItemOpen(true)} >See More</button>
+        </CardStyle>)}
+      </Cards>
+      <ShoppingPage
+        products={products}
+        setProducts={setProducts}
+        callb={addProducts}
         allPrices={allPrices}
-        callback={removePrices}  />
-      <ItemAbout page={page} callback={changePage}  />
+        callback={removePrices} />
+      <ItemAbout page={page} callback={changePage} open={itemOpen} close={setItemOpen} />
     </Fragment>
   )
 }

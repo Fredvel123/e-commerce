@@ -1,6 +1,9 @@
 import React, { Fragment, useEffect, useState } from 'react'
 // icons.
 import xIcon from '../../icons/x.png'
+// styled components.
+import { CardBuy } from '../../styled-components/ShoppingStyled';
+
 
 function ShoppingPage({products, setProducts, callb, allPrices, callback}) {
   const handleDeleteItem  = Uid => {
@@ -21,12 +24,12 @@ function ShoppingPage({products, setProducts, callb, allPrices, callback}) {
   
 return (
     <Fragment>
-        <h1>{priceTotal} $</h1>
+      <h1>{priceTotal} $</h1>
       {
-        products.map(item => <div key={item.element.id}>
+        products.map(item => <CardBuy key={item.element.id}>
           <img src={item.element.image} alt="" width="55px"/>
           <img src={xIcon} alt="" width="33px" onClick={ () => handleDeleteItem(item.element.id) & callback(item.element.price)} />
-        </div> ) 
+        </CardBuy> ) 
       }
     </Fragment>
   )
