@@ -6,7 +6,7 @@ import ItemAbout from './ItemAbout';
 import {useDispatch, useSelector} from 'react-redux';
 import {setDataApi} from '../../redux-toolkit/slices/DataApi'
 import ShoppingPage from './ShoppingPage';
-import { Card, Cards, CardStyle } from '../../styled-components/HomeStyled';
+import { Cards, CardStyle, Main } from '../../styled-components/HomeStyled';
 
 function HomePage() {
   const dataApi = useSelector(state => state.dataApi.value);
@@ -45,22 +45,24 @@ function HomePage() {
   }
   return (
     <Fragment>
+      <Main>
+        <Cards>
+          <Categories />
+          {dataApi.map(item =>
+            <CardStyle key={item.id}>
+              <img src={item.image} alt="" width="75px" />
+              <button onClick={() => addProducts(item) & getAllPrices(item.price)}  >Add the cart</button>
+              <button onClick={() => changePage(item.id) & setItemOpen(true)} >See More</button>
+            </CardStyle>)}
+        </Cards>
+        <ShoppingPage
+          products={products}
+          setProducts={setProducts}
+          callb={addProducts}
+          allPrices={allPrices}
+          callback={removePrices} />
+      </Main>
 
-      <Cards>
-      <Categories />
-        {dataApi.map(item => 
-        <CardStyle key={item.id}>
-          <img src={item.image} alt="" width="75px" />
-          <button onClick={() => addProducts(item) & getAllPrices(item.price)}  >Add the cart</button>
-          <button onClick={() => changePage(item.id) & setItemOpen(true)} >See More</button>
-        </CardStyle>)}
-      </Cards>
-      <ShoppingPage
-        products={products}
-        setProducts={setProducts}
-        callb={addProducts}
-        allPrices={allPrices}
-        callback={removePrices} />
       <ItemAbout page={page} callback={changePage} open={itemOpen} close={setItemOpen} />
     </Fragment>
   )

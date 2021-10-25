@@ -7,3 +7,8 @@ export const Cards = styled.div`
 export const CardStyle = styled.div`
   
 `
+
+export const Main = styled.div`
+  display: flex;
+`
+

@@ -24,13 +24,17 @@ function ShoppingPage({products, setProducts, callb, allPrices, callback}) {
   
 return (
     <Fragment>
+      <CardBuy>
       <h1>{priceTotal} $</h1>
       {
-        products.map(item => <CardBuy key={item.element.id}>
+        products.map(item => <div key={item.element.id}>
+          <div>
           <img src={item.element.image} alt="" width="55px"/>
           <img src={xIcon} alt="" width="33px" onClick={ () => handleDeleteItem(item.element.id) & callback(item.element.price)} />
-        </CardBuy> ) 
+          </div>
+        </div > ) 
       }
+      </ CardBuy>
     </Fragment>
   )
 }
