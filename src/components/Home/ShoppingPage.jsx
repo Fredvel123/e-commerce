@@ -2,7 +2,7 @@ import React, { Fragment, useEffect, useState } from 'react'
 // icons.
 import xIcon from '../../icons/x.png'
 // styled components.
-import { CardBuy } from '../../styled-components/ShoppingStyled';
+import { CardBuy, CardShopping } from '../../styled-components/ShoppingStyled';
 // redux
 import { useSelector } from 'react-redux';
 
@@ -28,15 +28,14 @@ function ShoppingPage({products, setProducts, callb, allPrices, callback}) {
 return (
     <Fragment>
       <CardBuy showMenu={openMenuShopping} >
-      {
-        products.map(item => <div key={item.element.id}>
-          <div>
+        <h1>$ {priceTotal}</h1>
+      {products.length !== 0 ?
+        products.map(item => <CardShopping key={item.element.id}>
           <img src={item.element.image} alt="" width="55px"/>
           <img src={xIcon} alt="" width="33px" onClick={ () => handleDeleteItem(item.element.id) & callback(item.element.price)} />
-          </div>
-        </div > ) 
+        </CardShopping > ) 
+        : <p>You still buy nothing </p>
       }
-      <h1>{priceTotal} $</h1>
       </ CardBuy>
     </Fragment>
   )

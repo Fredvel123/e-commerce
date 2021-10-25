@@ -28,9 +28,11 @@ export const CardStyle = styled.div`
     width: 75%;
     height: 30px;
     margin: 3px 0;
+    font-family: ${color.texr};
+    font-size: 15px;
     border: none;
     background: ${color.green};
-    color: ${color.light};
+    color: #fff;
     cursor: pointer;
     transition: .3s;
   }
@@ -44,3 +46,9 @@ export const Main = styled.div`
   display: flex;
 `
 
+export const ButtonStyle = styled.button`
+  background-color: ${color.dark} !important;
+  &:hover {
+    background: crimson !important;
+  }
+`

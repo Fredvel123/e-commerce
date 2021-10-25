@@ -2,6 +2,8 @@ import React, { Fragment } from 'react';
 // redux
 import { useDispatch } from 'react-redux';
 import { setDataApi } from '../../redux-toolkit/slices/DataApi';
+// styled components
+import { CategoriesStyled } from '../../styled-components/CategoriesStyled';
 
 function Categories() {
   const dispatch = useDispatch()
@@ -19,13 +21,13 @@ function Categories() {
    
   return (
     <Fragment>
-      <div>
+      <CategoriesStyled>
         <button onClick={() => getProductos(all)}>Alls</button>
+        <button onClick={() => getProductos(mens_clothing)} >Men's clothing</button>
         <button onClick={() => getProductos(electronic)}>Electronics</button>
         <button onClick={() => getProductos(jewelery) } >Jewelery</button>
-        <button onClick={() => getProductos(mens_clothing)} >Men's clothing</button>
         <button onClick={() => getProductos(womens_clothing)} >Women's clothing</button>
-      </div>
+      </CategoriesStyled>
     </Fragment>
   )
 }

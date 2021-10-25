@@ -21,6 +21,7 @@ export const HeaderStyled = styled.div`
   }
   h2 {
     margin-left: 5%;
+    font-family: ${color.text};
     font-size: 35px;
   }
 `
