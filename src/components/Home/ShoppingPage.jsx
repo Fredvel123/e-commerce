@@ -2,7 +2,7 @@ import React, { Fragment, useEffect, useState } from 'react'
 // icons.
 import xIcon from '../../icons/x.png'
 // styled components.
-import { CardBuy, CardShopping } from '../../styled-components/ShoppingStyled';
+import { CardBuy, CardShopping, DeleteButton } from '../../styled-components/ShoppingStyled';
 // redux
 import { useSelector } from 'react-redux';
 
@@ -18,7 +18,8 @@ function ShoppingPage({products, setProducts, callb, allPrices, callback}) {
   useEffect(() => {
     const sumPriceTotal = () => {
       const total = allPrices.reduce((a, b) => a + b, 0);
-      setPriceTotal(total)
+      const numRed = total.toFixed(2)
+      setPriceTotal(numRed)
     }
     sumPriceTotal()
     // eslint-disable-next-line
@@ -32,7 +33,7 @@ return (
       {products.length !== 0 ?
         products.map(item => <CardShopping key={item.element.id}>
           <img src={item.element.image} alt="" width="55px"/>
-          <img src={xIcon} alt="" width="33px" onClick={ () => handleDeleteItem(item.element.id) & callback(item.element.price)} />
+          <DeleteButton src={xIcon} alt="" width="33px" onClick={ () => handleDeleteItem(item.element.id) & callback(item.element.price)} />
         </CardShopping > ) 
         : <p>You still buy nothing </p>
       }

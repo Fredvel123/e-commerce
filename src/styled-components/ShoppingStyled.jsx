@@ -39,3 +39,6 @@ export const CardShopping = styled.div`
   justify-content: space-evenly;
   margin: 10px 0;
 `
+export const DeleteButton = styled.img`
+  cursor: pointer;
+`

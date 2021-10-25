@@ -3,6 +3,7 @@ import color from '../color&fonts/color.json'
 
 export const  AboutStyled = styled.div`
   height: 100vh;
+  overflow-y: auto;
   background: ${({open}) => open ? "#000000b7": ""};
   position: fixed;
   top: 0;
@@ -54,6 +55,7 @@ export const Card = styled.div`
 `
 export const Button = styled.img`
   width: 38px;
+  cursor: pointer;
   position: fixed;
   top: 7vh;
   right: 7%;
