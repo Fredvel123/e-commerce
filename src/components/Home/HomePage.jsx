@@ -45,12 +45,12 @@ function HomePage() {
   }
   return (
     <Fragment>
+    <Categories />
       <Main>
         <Cards>
-          <Categories />
           {dataApi.map(item =>
             <CardStyle key={item.id}>
-              <img src={item.image} alt="" width="75px" />
+              <img src={item.image} alt="" />
               <button onClick={() => addProducts(item) & getAllPrices(item.price)}  >Add the cart</button>
               <button onClick={() => changePage(item.id) & setItemOpen(true)} >See More</button>
             </CardStyle>)}

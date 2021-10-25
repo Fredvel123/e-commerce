@@ -3,7 +3,7 @@ import color from '../color&fonts/color.json'
 
 
 export const HeaderStyled = styled.div`
-  background: ${color.blue};
+  background: ${color.grayDark};
   height: 20vh;
   color: ${color.light};
   display: flex;

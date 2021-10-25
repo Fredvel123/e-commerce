@@ -3,9 +3,12 @@ import React, { Fragment, useEffect, useState } from 'react'
 import xIcon from '../../icons/x.png'
 // styled components.
 import { CardBuy } from '../../styled-components/ShoppingStyled';
-
+// redux
+import { useSelector } from 'react-redux';
 
 function ShoppingPage({products, setProducts, callb, allPrices, callback}) {
+  const openMenuShopping = useSelector(state => state.openMenuShopping.value)
+
   const handleDeleteItem  = Uid => {
     const elements = products.filter(x => x.element.id !== Uid );
     setProducts(elements)
@@ -24,8 +27,7 @@ function ShoppingPage({products, setProducts, callb, allPrices, callback}) {
   
 return (
     <Fragment>
-      <CardBuy>
-      <h1>{priceTotal} $</h1>
+      <CardBuy showMenu={openMenuShopping} >
       {
         products.map(item => <div key={item.element.id}>
           <div>
@@ -34,6 +36,7 @@ return (
           </div>
         </div > ) 
       }
+      <h1>{priceTotal} $</h1>
       </ CardBuy>
     </Fragment>
   )
